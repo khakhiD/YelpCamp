@@ -2,9 +2,11 @@ const EXPRESS_PORT = 3000;
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
 
+/* Database Connecting */
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
     useNewUrlParser: true,
     //useCreateIndex: true,
@@ -14,18 +16,26 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-    console.log("Database connected");
+    console.log("DB CONNECTED!");
 });
 
 const app = express();
+
+/* Express Settings
+    engine: ejs-mate
+    view-engine: ejs
+    views: "path/views/"
+    middleware: urlencoded, json, method-override
+*/
+app.engine('ejs', ejsMate);
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '/views/'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views/'));
-
+/* Routing */
 app.get('/', (req, res) => {
     res.render('home.ejs');
 })
@@ -35,7 +45,7 @@ app.get('/campgrounds', async (req, res) => {
     res.render('campgrounds/index.ejs', { campgrounds });
 })
 
-/* /:id 라우트 위에 있으면 id를 new에서 찾으므로 순서가 상관이 있다. */
+// /:id 라우트 위에 있으면 id를 new에서 찾으므로 순서가 상관이 있다.
 app.get('/campgrounds/new', (req, res) => {
     res.render('campgrounds/new.ejs');
 })
@@ -70,6 +80,8 @@ app.delete('/campgrounds/:id', async (req, res) => {
     res.redirect(`/campgrounds`);
 })
 
+
+/* PORT OPEN, LISTENING */
 app.listen(EXPRESS_PORT, ()=> {
     console.log(`[Serving on port ${EXPRESS_PORT}]`)
 })
