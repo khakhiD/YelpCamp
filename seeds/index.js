@@ -23,12 +23,17 @@ const seedDB = async () => {
     // await c.save();
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
+            image: 'https://source.unsplash.com/collection/483251',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus nobis incidunt fugiat asperiores, odio doloremque. Dicta laboriosam aspernatur dolorum qui vitae, doloribus suscipit iste ipsum placeat quos consequuntur cum inventore!',
+            price
         })
         await camp.save();
     }
+    console.log("seedDB() was completed.");
 }
 
 seedDB().then(() => mongoose.connection.close());
