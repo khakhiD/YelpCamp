@@ -2,15 +2,17 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="post">
+    <form action="/campgrounds" method="post" novalidate class="needs-validation">
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <input
           class="form-control"
           type="text"
           name="campground[title]"
-          id="title"
+          id="title" required
         />
+        <div class="valid-feedback">좋습니다!</div>
+        <div class="invalid-feedback">캠핑장 이름을 입력해주세요.</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
@@ -18,8 +20,10 @@
           class="form-control"
           type="text"
           name="campground[location]"
-          id="location"
+          id="location" required
         />
+        <div class="valid-feedback">좋습니다!</div>
+        <div class="invalid-feedback">지역을 입력해주세요.</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="image">Image URL</label>
@@ -27,8 +31,10 @@
           class="form-control"
           type="text"
           name="campground[image]"
-          id="image"
+          id="image" required
         />
+        <div class="valid-feedback">좋습니다!</div>
+        <div class="invalid-feedback">이미지 URL을 입력해주세요.</div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
@@ -42,8 +48,10 @@
             class="form-control"
             placeholder="0.00"
             aria-label="price"
-            aria-describedby="price-label"
+            aria-describedby="price-label" required
           />
+          <div class="valid-feedback">좋습니다!</div>
+          <div class="invalid-feedback">금액을 입력해주세요.</div>
         </div>
       </div>
       <div class="mb-3">
@@ -52,8 +60,10 @@
           class="form-control"
           type="text"
           name="campground[description]"
-          id="description"
+          id="description" required
         ></textarea>
+        <div class="valid-feedback">좋습니다!</div>
+        <div class="invalid-feedback">간단한 설명을 입력해주세요.</div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success">Add Campground</button>
