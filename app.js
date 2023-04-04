@@ -1,10 +1,13 @@
-const EXPRESS_PORT = 3000;
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
-const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
+const EXPRESS_PORT = 3000;
+const path = require('path');
+const session = require('express-session');
+const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
+
+
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
@@ -31,6 +34,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+const sessionConfig = {
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + (1000 * 60 * 60 * 24 * 7),
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+app.use(session(sessionConfig));
 
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
