@@ -34,7 +34,7 @@ router.post("/login", passport.authenticate("local", {
     keepSessionInfo: true,
   }),
   catchAsync(async (req, res) => {
-    req.flash("success", "Welcome back!");
+    req.flash("success", `Welcome back, ${req.user.username}!`);
     const redirectUrl = req.session.returnTo || '/campgrounds';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
