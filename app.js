@@ -54,29 +54,25 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
+    console.log(req.session);
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
 })
 
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
-
-app.get('/fakeUser', async (req, res) => {
-    const user = new User({ email: 'asdf@gmail.com', username: 'him' })
-    const newUser = await User.register(user, 'qwer1234');
-    res.send(newUser);
-})
 
 app.get('/', (req, res) => {
     res.render('home.ejs');
