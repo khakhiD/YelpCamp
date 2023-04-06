@@ -1,21 +1,8 @@
 const catchAsync = require('../utils/catchAsync');
-const ExpressError = require('../utils/ExpressError');
 const Campground = require('../models/campground');
-const { campgroundSchema } = require('../schemas');
 const express = require('express')
 const router = express.Router();
-const { isLoggedIn } = require('../middleware');
-
-// Validation Function
-const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-}
+const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 
 // Routes
 router.get('/', catchAsync(async (req, res, next) => {
@@ -23,7 +10,6 @@ router.get('/', catchAsync(async (req, res, next) => {
     res.render('campgrounds/index.ejs', { campgrounds });
 }));
 
-// `/:id` 라우트 위에 있으면 id를 new에서 찾으므로 순서가 상관이 있다.
 router.get('/new', isLoggedIn, (req, res) => {
     res.render('campgrounds/new.ejs');
 });
@@ -47,7 +33,7 @@ router.get('/:id', catchAsync(async (req, res, next) => {
     res.render('campgrounds/show.ejs', { campground });
 }));
 
-router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findById(id);
     if(!campground) {
@@ -57,14 +43,14 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     res.render('campgrounds/edit.ejs', { campground });
 }));
 
-router.put('/:id', isLoggedIn, validateCampground, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
     req.flash('success', 'Successfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`);
 }));
 
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id)
     req.flash('success', 'Successfully deleted campground!');
