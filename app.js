@@ -2,8 +2,6 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config()
 }
 
-console.log(process.env.ENVVAR_TEST);
-
 const express = require('express');
 const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
