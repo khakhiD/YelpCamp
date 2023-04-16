@@ -21,9 +21,13 @@ const User = require('./models/user');
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
+const MongoStore = require('connect-mongo');
+
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
+const secret = process.env.SECRET || 'secret';
 
 /* Database Connecting */
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     //useCreateIndex: true,
     useUnifiedTopology: true
@@ -47,8 +51,19 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize({ replaceWith: '_' }));
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24 * 3600 // 24시간 마다 업데이트
+});
+
+store.on("error", function(e) {
+    console.log(`SESSION STORE ERROR!`, e);
+})
+
 const sessionConfig = {
-    secret: 'secret',
+    store: store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {

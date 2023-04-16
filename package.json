@@ -4,7 +4,9 @@
   "description": "YelpCamp는 사용자들이 야영지를 만들고 검토할 수 있는 웹사이트로, Udemy의 유명 강좌 2023 Web Developer Bootcamp(by Colt Steele)의 후반부 토이 프로젝트입니다. 풀스택 웹 개발에 대한 개념을 익히고자 해당 강의의 프로젝트를 진행하게 되었습니다.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
     "@mapbox/mapbox-sdk": "^0.15.0",
     "cloudinary": "^1.35.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.0.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "ejs-mate": "^4.0.0",
