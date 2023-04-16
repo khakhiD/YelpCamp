@@ -6,7 +6,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const ExpressError = require('./utils/ExpressError');
-const EXPRESS_PORT = 3000;
+const port = process.env.PORT || 8080;
 const path = require('path');
 const session = require('express-session');
 const ejsMate = require('ejs-mate');
@@ -23,7 +23,7 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo');
 
-const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
+const dbUrl = process.env.DB_URL
 const secret = process.env.SECRET || 'secret';
 
 /* Database Connecting */
@@ -174,6 +174,6 @@ app.use((err, req, res, next) => {
 })
 
 /* PORT OPEN, LISTENING */
-app.listen(EXPRESS_PORT, ()=> {
-    console.log(`[SERVING ON PORT ${EXPRESS_PORT}]`)
+app.listen(port, "0.0.0.0", ()=> {
+    console.log(`[SERVING ON PORT ${port}]`)
 })

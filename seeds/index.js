@@ -7,7 +7,7 @@ const geocoder = mbxGeocoding({ accessToken: mbxToken });
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', {
+mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     //useCreateIndex: true,
     useUnifiedTopology: true
@@ -25,7 +25,7 @@ const seedDB = async () => {
     await Campground.deleteMany({});
     // const c = new Campground({ title: 'purple field' });
     // await c.save();
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         // const randomCity = `${cities[random1000].city}, ${cities[random1000].state}`
@@ -36,7 +36,7 @@ const seedDB = async () => {
         // const geometry = geoData.body.features[0].geometry;
         const camp = new Campground({
             // YOUR USER ID
-            author: '642eb4d28c7980988c14d616',
+            author: '643bfd4e4f3448137760be1a',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus nobis incidunt fugiat asperiores, odio doloremque. Dicta laboriosam aspernatur dolorum qui vitae, doloribus suscipit iste ipsum placeat quos consequuntur cum inventore!',
