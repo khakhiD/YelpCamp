@@ -27,6 +27,10 @@
 </div>
 
 ## Deployment
-<img src="https://fly.io/static/images/brand/logo-landscape.svg" width="200px"><br/>
-강의는 heroku를 사용했지만, 무료 플랜이 없어짐에따라 [fly.io](https://fly.io/)를 대체제로 사용했습니다.
-- [배포 링크👈](https://yelpcamp-toy.fly.dev/)
+
+<div align="center">
+<img src="https://fly.io/static/images/brand/logo-landscape.svg" width="100px"><br/>
+[배포 링크👈](https://yelpcamp-toy.fly.dev/)
+</div>
+<p>강의는 <b>heroku</b>를 사용했지만, 무료 플랜이 없어짐에따라 <b>[fly.io](https://fly.io/)</b>를 대체제로 사용했습니다.</p>
+
