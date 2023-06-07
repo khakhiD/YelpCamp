@@ -7,10 +7,6 @@
   </p>
 </div>
 
-## Deployment
-강의는 heroku를 사용했지만, 무료 플랜이 없어짐에따라 [fly.io](https://fly.io/)를 대체제로 사용했습니다.
-- [배포 링크👈](https://yelpcamp-toy.fly.dev/)
-
 ## Features
 - 사용자는 회원가입 후 사용할 수 있습니다.
 - 사용자는 '캠핑장(campground)'을 create, edit, remove 할 수 있습니다.
@@ -26,6 +22,11 @@
 <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
 <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/mongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white">
-<img src="https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white">
+<img src="https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=white"> <br />
 <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 </div>
+
+## Deployment
+<img src="https://fly.io/static/images/brand/logo-landscape.svg" width="200px"><br/>
+강의는 heroku를 사용했지만, 무료 플랜이 없어짐에따라 [fly.io](https://fly.io/)를 대체제로 사용했습니다.
+- [배포 링크👈](https://yelpcamp-toy.fly.dev/)
