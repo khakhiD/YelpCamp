@@ -30,7 +30,9 @@
 
 <div align="center">
 <img src="https://fly.io/static/images/brand/logo-landscape.svg" width="100px"><br/>
-[배포 링크👈](https://yelpcamp-toy.fly.dev/)
+  
+**[배포 링크👈](https://yelpcamp-toy.fly.dev/)**
+  
 </div>
-<p>강의는 <b>heroku</b>를 사용했지만, 무료 플랜이 없어짐에따라 <b>[fly.io](https://fly.io/)</b>를 대체제로 사용했습니다.</p>
+<p>강의는 <b>heroku</b>를 사용했지만, 무료 플랜이 없어짐에따라 <b><a href="https://fly.io/" target="_blank">fly.io</a></b>를 대체제로 사용했습니다.</p>
 
