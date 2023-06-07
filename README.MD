@@ -1,5 +1,12 @@
+<div align="center">
+
 # YelpCamp
-YelpCamp는 사용자들이 야영지를 만들고 검토할 수 있는 웹사이트로, Udemy 강의 [2023 Web Developer Bootcamp - by Colt Steele] 후반부 토이 프로젝트입니다. 풀스택 웹 개발에 대한 개념을 익히고자 해당 강의 프로젝트를 진행하게 되었습니다.
+YelpCamp는 사용자들이 야영지를 만들고 검토할 수 있는 웹사이트로, Udemy 강의 [2023 Web Developer Bootcamp - by Colt Steele] 후반부 토이 프로젝트입니다.
+풀스택 웹 개발에 대한 개념을 익히고자 해당 강의 프로젝트를 진행하게 되었습니다.
+</div>
+
+## Deployment
+- [배포 링크👈](https://yelpcamp-toy.fly.dev/)
 
 ## Features
 - 사용자는 회원가입 후 사용할 수 있습니다.
